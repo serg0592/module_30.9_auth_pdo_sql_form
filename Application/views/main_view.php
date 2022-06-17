@@ -1,11 +1,11 @@
 <h1>Авторизация</h1>
-<form method="POST">
+<form method="POST" action="../core/models/model_login.php">
     Логин <input name="login" type="text" required><br>
     Пароль <input name="password" type="password" required><br>
     <input name="submit" type="submit" value="login">
 </form>
 <h1>Регистрация</h1>
-<form method="GET" action="">
+<form method="POST" action="">
     <input name="url" type="submit" value="registration">
 </form>
 <h1>Вход без авторизации</h1>

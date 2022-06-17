@@ -4,15 +4,16 @@ class Route
 	public static function start()
 	{
 		//действия по умолчанию
-		$controller_name = 'login';
+		$controller_name = 'main';
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-        //$_GET['url'] = 'registration';
+        //$_GET['url'] = 'login';
 		if (isset($_GET['url'])) {
             $controller_name = $_GET['url'];
 		}
 
+		//$_POST['login'] = 'login';
 		if (isset($_POST['login'])) {
 			echo 'login<br>';
 		}
@@ -28,17 +29,17 @@ class Route
 		
 		// подцепляем файл с классом модели (файла модели может и не быть)
 		$model_file = strtolower($model_name).'.php';
-		$model_path = "../core/models/".$model_file;
+		$model_path = "../models/".$model_file;
 		if(file_exists($model_path))
 		{
-			include "../core/models/".$model_file;
+			include "../models/".$model_file;
 		}
 		// подцепляем файл с классом контроллера
 		$controller_file = strtolower($controller_name).'.php'; //в нижний регистр
-		$controller_path = "../core/controllers/".$controller_file;
+		$controller_path = "../controllers/".$controller_file;
 		if(file_exists($controller_path))
 		{
-			include "../core/controllers/".$controller_file;
+			include "../controllers/".$controller_file;
 		}
 		else
 		{
