@@ -3,14 +3,19 @@ class Route
 {
 	public static function start()
 	{
+		//действия по умолчанию
+		$controller_name = 'login';
+		$action_name = 'index';
+
         //проверка наличия имя контроллера в GET
-        if (isset($_GET['url'])) {
+        //$_GET['url'] = 'registration';
+		if (isset($_GET['url'])) {
             $controller_name = $_GET['url'];
-        } else {
-            //действия по умолчанию
-            $controller_name = 'login';
-            $action_name = 'index';
-        }
+		}
+
+		if (isset($_POST['login'])) {
+			echo 'login<br>';
+		}
 		
 		// добавляем префиксы
 		$model_name = 'model_'.$controller_name;
