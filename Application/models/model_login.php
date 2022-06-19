@@ -1,6 +1,6 @@
 <?php
-    class Model_LogIn extends Model {
-        function userAuth() {
+    class Model_Login extends Model {
+        public function userAuth() {
             // Страница авторизации 
             // Функция для генерации случайной строки
             function generateCode($length=6) {
@@ -13,15 +13,15 @@
                 return $code;
             } 
             // Соединяемся с БД
-            $link=mysqli_connect("localhost", "root", "", "30.9_practice"); 
-            if(isset($_POST['submit']))
-            {
+            $link=mysqli_connect("localhost", "root", "", "30.9_practice");
+
+            if(isset($_POST['submitLogin'])) {
                 // Вытаскиваем из БД запись, у которой логин равняется введенному
-                $query = mysqli_query($link,"SELECT user_id, user_password FROM users WHERE user_login='".mysqli_real_escape_string($link,$_POST['login'])."' LIMIT 1");
+                $query = mysqli_query($link,"SELECT user_id, user_pas FROM users WHERE user_log='".mysqli_real_escape_string($link,$_POST['login'])."' LIMIT 1");
                 $data = mysqli_fetch_assoc($query); 
                 // Сравниваем пароли
-                if($data['user_password'] === md5(md5($_POST['password'])))
-                {
+
+                if($data['user_pas'] === md5(md5($_POST['password']))) {
                     // Генерируем случайное число и шифруем его
                     $hash = md5(generateCode(10));
                     // Записываем в БД новый хеш авторизации
@@ -30,10 +30,8 @@
                     setcookie("id", $data['user_id'], time()+60*60*24*30, "/");
                     setcookie("hash", $hash, time()+60*60*24*30, "/", null, null, true); // httponly !!! 
                     // Переадресовываем браузер на страницу проверки нашего скрипта
-                    header("Location: check.php"); exit();
-                }
-                else
-                {
+                    header("Location: model_check.php"); exit();
+                } else {
                     print "Вы ввели неправильный логин/пароль";
                 }
             }

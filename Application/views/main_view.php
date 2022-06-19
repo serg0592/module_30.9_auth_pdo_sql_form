@@ -1,8 +1,8 @@
 <h1>Авторизация</h1>
-<form method="POST" action="../core/models/model_login.php">
+<form method="POST" action="">
     Логин <input name="login" type="text" required><br>
     Пароль <input name="password" type="password" required><br>
-    <input name="submit" type="submit" value="login">
+    <input name="submitLogin" type="submit" value="login">
 </form>
 <h1>Регистрация</h1>
 <form method="POST" action="">

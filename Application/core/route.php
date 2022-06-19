@@ -13,9 +13,11 @@ class Route
             $controller_name = $_GET['url'];
 		}
 
-		//$_POST['login'] = 'login';
-		if (isset($_POST['login'])) {
-			echo 'login<br>';
+		$_POST['submitLogin'] = 'login';
+		$_POST['login'] = 'serg';
+		$_POST['password'] = 'serg123';
+		if (isset($_POST['submitLogin'])) {
+			$controller_name = $_POST['submitLogin'];
 		}
 		
 		// добавляем префиксы
@@ -29,21 +31,20 @@ class Route
 		
 		// подцепляем файл с классом модели (файла модели может и не быть)
 		$model_file = strtolower($model_name).'.php';
-		$model_path = "../models/".$model_file;
+		$model_path = "../Application/models/".$model_file;
 		if(file_exists($model_path))
 		{
-			include "../models/".$model_file;
+			include "../Application/models/".$model_file;
 		}
 		// подцепляем файл с классом контроллера
 		$controller_file = strtolower($controller_name).'.php'; //в нижний регистр
-		$controller_path = "../controllers/".$controller_file;
+		$controller_path = "../Application/controllers/".$controller_file;
 		if(file_exists($controller_path))
 		{
-			include "../controllers/".$controller_file;
+			include "../Application/controllers/".$controller_file;
 		}
 		else
-		{
-			
+		{			
 			Route::ErrorPage404();
 		}
 		// создаем контроллер
