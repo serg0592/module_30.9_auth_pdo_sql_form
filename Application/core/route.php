@@ -13,21 +13,24 @@ class Route
             $controller_name = $_GET['url'];
 		}
 
-		$_POST['submitLogin'] = 'login';
-		$_POST['login'] = 'serg';
-		$_POST['password'] = 'serg123';
+		//$_POST['submitLogin'] = 'login';
+		//$_POST['login'] = 'serg';
+		//$_POST['password'] = 'serg123';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
+		}
+
+		//$_POST['registration'] = 'registration';
+		//$_POST['login'] = 'asd';
+		//$_POST['password'] = '123';
+		if (isset($_POST['registration'])) {
+			$controller_name = $_POST['registration'];
 		}
 		
 		// добавляем префиксы
 		$model_name = 'model_'.$controller_name;
 		$controller_name = 'controller_'.$controller_name;
 		$action_name = 'action_'.$action_name;
-
-		echo "Model: $model_name <br>";
-		echo "Controler: $controller_name <br>";
-		echo "Action: $action_name <br>";
 		
 		// подцепляем файл с классом модели (файла модели может и не быть)
 		$model_file = strtolower($model_name).'.php';
@@ -59,6 +62,10 @@ class Route
 		{
 		    Route::ErrorPage404();
 		}
+		//выводим информацию для себя
+		echo "Model: $model_name <br>";
+		echo "Controler: $controller_name <br>";
+		echo "Action: $action_name <br>";
 	}
 
 	public static function ErrorPage404() {

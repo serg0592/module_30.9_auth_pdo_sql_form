@@ -1,5 +1,7 @@
-<form method="POST" action="">
-    Логин <input name="login" type="text" required><br>
-    Пароль <input name="password" type="password" required><br>
-    <input name="submit" type="submit" value="Зарегистрироваться">
-</form>
+<p>
+    <?php
+        echo "Успешная регистрация";
+        sleep(2);
+        header("Location: ../public/index.php");
+    ?>    
+</p>

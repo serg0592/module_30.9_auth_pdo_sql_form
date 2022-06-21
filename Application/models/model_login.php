@@ -30,7 +30,8 @@
                     setcookie("id", $data['user_id'], time()+60*60*24*30, "/");
                     setcookie("hash", $hash, time()+60*60*24*30, "/", null, null, true); // httponly !!! 
                     // Переадресовываем браузер на страницу проверки нашего скрипта
-                    header("Location: model_check.php"); exit();
+                    //header("Location: model_check.php"); 
+                    exit();
                 } else {
                     print "Вы ввели неправильный логин/пароль";
                 }

@@ -5,7 +5,7 @@
             // Соединяемся с БД
             $link=mysqli_connect("localhost", "root", "", "30.9_practice"); 
             
-            if(isset($_POST['submit'])) {
+            if(isset($_POST['registration'])) {
                 $err = [];
                 
                 // проверяем логин
@@ -18,7 +18,7 @@
                 } 
                 
                 // проверяем, не существует ли пользователя с таким именем
-                $query = mysqli_query($link, "SELECT user_id FROM users WHERE user_login='".mysqli_real_escape_string($link, $_POST['login'])."'");
+                $query = mysqli_query($link, "SELECT user_id FROM users WHERE user_log='".mysqli_real_escape_string($link, $_POST['login'])."'");
                 
                 if(mysqli_num_rows($query) > 0) {
                     $err[] = "Пользователь с таким логином уже существует в базе данных";
@@ -29,8 +29,9 @@
                     $login = $_POST['login'];
                     // Убираем лишние пробелы и делаем двойное хэширование (используем старый метод md5)
                     $password = md5(md5(trim($_POST['password']))); 
-                    mysqli_query($link,"INSERT INTO users SET user_login='".$login."', user_password='".$password."'");
-                    header("Location: login.php"); exit();
+                    mysqli_query($link,"INSERT INTO users SET user_log='".$login."', user_pas='".$password."'");
+                    header("Location: ../Application/views/registration_view.php"); 
+                    exit();
                 } else {
                     print "<b>При регистрации произошли следующие ошибки:</b><br>";
                     foreach($err AS $error) {
