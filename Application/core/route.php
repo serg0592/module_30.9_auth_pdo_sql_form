@@ -10,7 +10,17 @@ class Route
         //проверка наличия имя контроллера в GET
         //$_GET['url'] = 'login';
 		if (isset($_GET['url'])) {
-            $controller_name = $_GET['url'];
+            //$controller_name = $_GET['url'];
+			
+			if ($_GET['url'] == 'regPage') {
+				$controller_name = 'registration';
+				$action_name = 'open_reg';
+			} else {
+				if ($_GET['url'] == 'regSuccessPage') {
+					$controller_name = 'registration';
+					$action_name = 'open_reg';
+				}
+			}
 		}
 
 		//$_POST['submitLogin'] = 'login';
@@ -20,17 +30,29 @@ class Route
 			$controller_name = $_POST['submitLogin'];
 		}
 
+		/*$_GET['registration'] = 'registration';
+		if (isset($_GET['regPage'])) {
+			$controller_name = 'registration';
+			$action_name = 'open_reg';
+		}*/
+
 		//$_POST['registration'] = 'registration';
 		//$_POST['login'] = 'asd';
 		//$_POST['password'] = '123';
 		if (isset($_POST['registration'])) {
 			$controller_name = $_POST['registration'];
+			$action_name = 'index';
 		}
 		
 		// добавляем префиксы
 		$model_name = 'model_'.$controller_name;
 		$controller_name = 'controller_'.$controller_name;
 		$action_name = 'action_'.$action_name;
+
+		//выводим информацию для себя
+		echo "Model: $model_name <br>";
+		echo "Controler: $controller_name <br>";
+		echo "Action: $action_name <br>";
 		
 		// подцепляем файл с классом модели (файла модели может и не быть)
 		$model_file = strtolower($model_name).'.php';
@@ -62,10 +84,7 @@ class Route
 		{
 		    Route::ErrorPage404();
 		}
-		//выводим информацию для себя
-		echo "Model: $model_name <br>";
-		echo "Controler: $controller_name <br>";
-		echo "Action: $action_name <br>";
+		
 	}
 
 	public static function ErrorPage404() {

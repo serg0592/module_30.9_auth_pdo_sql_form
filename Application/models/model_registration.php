@@ -30,7 +30,9 @@
                     // Убираем лишние пробелы и делаем двойное хэширование (используем старый метод md5)
                     $password = md5(md5(trim($_POST['password']))); 
                     mysqli_query($link,"INSERT INTO users SET user_log='".$login."', user_pas='".$password."'");
-                    header("Location: ../Application/views/registration_view.php"); 
+
+                    header("Location: ../Application/views/index.php?url=regSuccessPage");
+
                     exit();
                 } else {
                     print "<b>При регистрации произошли следующие ошибки:</b><br>";
