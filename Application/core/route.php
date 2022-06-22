@@ -8,33 +8,30 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-        //$_GET['url'] = 'login';
 		if (isset($_GET['url'])) {
-            //$controller_name = $_GET['url'];
-			
-			if ($_GET['url'] == 'regPage') {
-				$controller_name = 'registration';
-				$action_name = 'open_reg';
-			} else {
-				if ($_GET['url'] == 'regSuccessPage') {
+			switch ($_GET['url']) {
+				case 'regPage':
 					$controller_name = 'registration';
 					$action_name = 'open_reg';
-				}
+					break;
+				case 'regSuccessPage':
+					$controller_name = 'registration';
+					$action_name = 'reg_success';
+					break;
+				case 'gallery_auth':
+					$controller_name = 'gallery';
+					$action_name = 'index_auth';
+				case 'check':
+					$controller_name = $_GET['url'];
 			}
 		}
 
-		//$_POST['submitLogin'] = 'login';
-		//$_POST['login'] = 'serg';
-		//$_POST['password'] = 'serg123';
+		$_POST['submitLogin'] = 'login';
+		$_POST['login'] = 'serg1';
+		$_POST['password'] = 'asd';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		}
-
-		/*$_GET['registration'] = 'registration';
-		if (isset($_GET['regPage'])) {
-			$controller_name = 'registration';
-			$action_name = 'open_reg';
-		}*/
 
 		//$_POST['registration'] = 'registration';
 		//$_POST['login'] = 'asd';

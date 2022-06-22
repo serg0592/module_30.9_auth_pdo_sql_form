@@ -12,7 +12,16 @@
         </header>
         <main>
             <?php
+                //подгружаем содержимое страницы
                 include $content_view;
+                //опционально подгружаем интерфейс загрузки изображений
+                if (isset($adds_view)) {
+                    include $adds_view;
+                }
+                //опционально подгружаем интерфейс редактирования комментариев
+                if (isset($comments_view)) {
+                    include $comments_view;
+                }
             ?>
         </main>
         <footer>

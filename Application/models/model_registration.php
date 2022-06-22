@@ -31,7 +31,8 @@
                     $password = md5(md5(trim($_POST['password']))); 
                     mysqli_query($link,"INSERT INTO users SET user_log='".$login."', user_pas='".$password."'");
 
-                    header("Location: ../Application/views/index.php?url=regSuccessPage");
+                    //переадресовываем на страницу с сообщением об успехе
+                    header("Location: ./public/index.php?url=regSuccessPage");
 
                     exit();
                 } else {
