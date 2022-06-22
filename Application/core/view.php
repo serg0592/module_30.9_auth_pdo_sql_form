@@ -6,10 +6,8 @@ class View
 		include '../Application/views/'.$template_view;	
 	}
 
-	function generateAuth($content_view, $template_view, $comments_view, $adds_view) {
+	function generateAuth($content_view, $template_view, $interface_1_view, $interface_2_view, $authUserData_view) {
 		include '../Application/views/'.$template_view;
-		include '../Application/views/'.$adds_view;
-		include '../Application/views/'.$comments_view;
 	}
 }
 ?>

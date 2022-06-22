@@ -12,15 +12,18 @@
         </header>
         <main>
             <?php
+                if (isset($authUserData_view)) {
+                    include $authUserData_view;
+                }
                 //подгружаем содержимое страницы
                 include $content_view;
                 //опционально подгружаем интерфейс загрузки изображений
-                if (isset($adds_view)) {
-                    include $adds_view;
+                if (isset($interface_1_view)) {
+                    include $interface_1_view;
                 }
                 //опционально подгружаем интерфейс редактирования комментариев
-                if (isset($comments_view)) {
-                    include $comments_view;
+                if (isset($interface_2_view)) {
+                    include $interface_2_view;
                 }
             ?>
         </main>

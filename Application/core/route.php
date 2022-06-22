@@ -8,6 +8,7 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
+		$_GET['url'] = 'gallery_auth';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':
@@ -21,14 +22,16 @@ class Route
 				case 'gallery_auth':
 					$controller_name = 'gallery';
 					$action_name = 'index_auth';
+					break;
 				case 'check':
 					$controller_name = $_GET['url'];
+					break;
 			}
 		}
 
-		$_POST['submitLogin'] = 'login';
-		$_POST['login'] = 'serg1';
-		$_POST['password'] = 'asd';
+		//$_POST['submitLogin'] = 'login';
+		//$_POST['login'] = 'serg';
+		//$_POST['password'] = 'serg';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		}
@@ -45,11 +48,6 @@ class Route
 		$model_name = 'model_'.$controller_name;
 		$controller_name = 'controller_'.$controller_name;
 		$action_name = 'action_'.$action_name;
-
-		//выводим информацию для себя
-		echo "Model: $model_name <br>";
-		echo "Controler: $controller_name <br>";
-		echo "Action: $action_name <br>";
 		
 		// подцепляем файл с классом модели (файла модели может и не быть)
 		$model_file = strtolower($model_name).'.php';
@@ -81,6 +79,10 @@ class Route
 		{
 		    Route::ErrorPage404();
 		}
+		//выводим информацию для себя
+		echo "Model: $model_name <br>";
+		echo "Controler: $controller_name <br>";
+		echo "Action: $action_name <br>";
 		
 	}
 

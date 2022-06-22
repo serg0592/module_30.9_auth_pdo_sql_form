@@ -1,5 +1,6 @@
 <?php
     class Model_Check extends Model {
+        public $greating;
         function checkUser() {
             // Скрипт проверки 
             // Соединяемся с БД
@@ -14,13 +15,13 @@
             //or (($userdata['user_ip'] !== $_SERVER['REMOTE_ADDR'])  and ($userdata['user_ip'] !== "0")))
                 {
                     setcookie("id", "", time() - 3600*24*30*12, "/");
-                    setcookie("hash", "", time() - 3600*24*30*12, "/", null, null, true); // httponly !!!
+                    setcookie("hash", "", time() - 3600*24*30*12, "/", true); // httponly !!!
                     print "Хм, что-то не получилось";
                 }
                 else
                 {
-                    //print "Привет, ".$userdata['user_log'].". Всё работает!";
-                    header("Location: ./public/?url=gallery_auth");
+                    $greating = "Привет, ".$userdata['user_log']."!";
+                    header("Location: ?url=gallery_auth");
                     exit();
                 }
             }

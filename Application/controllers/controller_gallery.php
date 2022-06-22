@@ -11,7 +11,7 @@ class Controller_Gallery extends Controller {
     }
     
     function action_index_auth() {
-        $this->view->generateAuth('gallery_auth_view.php', 'template_view.php', 'comments_view.php');
+        $this->view->generateAuth('gallery_view.php', 'template_view.php', 'download_pic_view.php', 'comment_form_view.php', 'user_greating_view.php');
     }
 }
 ?>
