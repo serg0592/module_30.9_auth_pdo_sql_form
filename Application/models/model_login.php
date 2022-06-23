@@ -1,6 +1,11 @@
 <?php
     class Model_Login extends Model {
         public function userAuth() {
+            //запускаем сессию
+            session_start();
+            $_SESSION['login'] = $_POST['login'];
+            $_SESSION['password'] = $_POST['password'];
+
             // Страница авторизации 
             // Функция для генерации случайной строки
             function generateCode($length=6) {
@@ -15,11 +20,11 @@
             // Соединяемся с БД
             $link=mysqli_connect("localhost", "root", "", "30.9_practice");
             // Вытаскиваем из БД запись, у которой логин равняется введенному
-            $query = mysqli_query($link,"SELECT user_id, user_pas FROM users WHERE user_log='".mysqli_real_escape_string($link,$_POST['login'])."' LIMIT 1");
+            $query = mysqli_query($link,"SELECT user_id, user_pas FROM users WHERE user_log='".mysqli_real_escape_string($link,$_SESSION['login'])."' LIMIT 1");
             $data = mysqli_fetch_assoc($query); 
             // Сравниваем пароли
 
-            if($data['user_pas'] === md5(md5($_POST['password']))) {
+            if($data['user_pas'] === md5(md5($_SESSION['password']))) {
                 // Генерируем случайное число и шифруем его
                 $hash = md5(generateCode(10));
 

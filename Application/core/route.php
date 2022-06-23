@@ -8,7 +8,7 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-		$_GET['url'] = 'gallery_auth';
+		//$_GET['url'] = 'check';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':
@@ -30,8 +30,8 @@ class Route
 		}
 
 		//$_POST['submitLogin'] = 'login';
-		//$_POST['login'] = 'serg';
-		//$_POST['password'] = 'serg';
+		$_POST['login'] = 'serg';
+		$_POST['password'] = 'serg';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		}

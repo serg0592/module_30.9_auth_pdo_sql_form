@@ -1,7 +1,7 @@
 <?php
     class Model_Check extends Model {
-        public $greating;
         function checkUser() {
+            session_start();
             // Скрипт проверки 
             // Соединяемся с БД
             $link=mysqli_connect("localhost", "root", "", "30.9_practice");
@@ -20,14 +20,14 @@
                 }
                 else
                 {
-                    $greating = "Привет, ".$userdata['user_log']."!";
+                    $_SESSION['message'] = "Привет, ".$userdata['user_log']."!";
                     header("Location: ?url=gallery_auth");
                     exit();
                 }
             }
             else
             {
-                print "Включите куки";
+                echo "Включите куки<br>";
             }
         }        
     }
