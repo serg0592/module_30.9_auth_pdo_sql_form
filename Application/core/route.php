@@ -29,19 +29,21 @@ class Route
 			}
 		}
 
-		//$_POST['submitLogin'] = 'login';
-		$_POST['login'] = 'serg';
-		$_POST['password'] = 'serg';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		}
 
-		//$_POST['registration'] = 'registration';
-		//$_POST['login'] = 'asd';
-		//$_POST['password'] = '123';
 		if (isset($_POST['registration'])) {
 			$controller_name = $_POST['registration'];
 			$action_name = 'index';
+		}
+
+		//$_POST['submitUpload'] = 1;
+		//$_FILES['userfile']['name'][''] = 'set';
+		if (isset($_POST['submitUpload'])) {
+			$content = $_POST['submitUpload'];
+			$controller_name = 'upload';
+			$action_name = 'upload';
 		}
 		
 		// добавляем префиксы

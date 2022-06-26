@@ -32,8 +32,6 @@
                 mysqli_query($link, "UPDATE users SET user_hash='".$hash."' WHERE user_id='".$data['user_id']."'");
 
                 // Ставим куки
-                //setcookie("id", $data['user_id'], time()+60*60*24*30, "/");
-                //setcookie("hash", $hash, time()+60*60*24*30, "/", true); // httponly !!!
 
                 setcookie("id", $data['user_id']);
                 setcookie("hash", $hash); // httponly !!!

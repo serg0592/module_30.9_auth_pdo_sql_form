@@ -17,6 +17,7 @@
                 }
                 //подгружаем содержимое страницы
                 include $content_view;
+                
                 //опционально подгружаем интерфейс загрузки изображений
                 if (isset($interface_1_view)) {
                     include $interface_1_view;
