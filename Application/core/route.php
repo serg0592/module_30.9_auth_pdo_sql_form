@@ -8,7 +8,7 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-		//$_GET['url'] = 'check';
+		$_GET['url'] = 'gallery';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':
@@ -26,6 +26,9 @@ class Route
 				case 'check':
 					$controller_name = $_GET['url'];
 					break;
+				case 'gallery';
+					$controller_name = 'gallery';
+					break;
 			}
 		}
 
@@ -39,7 +42,6 @@ class Route
 		}
 
 		//$_POST['submitUpload'] = 1;
-		//$_FILES['userfile']['name'][''] = 'set';
 		if (isset($_POST['submitUpload'])) {
 			$content = $_POST['submitUpload'];
 			$controller_name = 'upload';

@@ -5,9 +5,8 @@ class Controller_Gallery extends Controller {
         $this->model = new Model_Gallery();
     }
 
-    function action_index() {
-        $this->model->chechFiles(); 
-        $this->view->generate('gallery_view.php', 'template_view.php');
+    function action_index() { 
+        $this->view->generate('gallery_view.php', 'template_view.php', $this->model->chechFiles());
     }
     
     function action_index_auth() {

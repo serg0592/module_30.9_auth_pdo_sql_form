@@ -4,8 +4,10 @@
     Пароль <input name="password" type="password" required><br>
     <input name="submitLogin" type="submit" value="login">
 </form>
-<a href="?url=regPage">Регистрация</a>
+<p>
+    <a href="?url=regPage">Регистрация</a>
+</p>
 <h1>Вход без авторизации</h1>
 <form method="GET" action="">
-    <input name="enter" type="submit" value="gallery">
+    <input name="url" type="submit" value="gallery">
 </form>
