@@ -7,7 +7,6 @@ class Controller_Login extends Controller {
 
     function action_index() { 
         $this->model->userAuth();
-        $this->view->generate('login_view.php', 'template_view.php');
     }
 }
 ?>

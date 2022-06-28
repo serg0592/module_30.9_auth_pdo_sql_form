@@ -5,9 +5,9 @@ class Controller_Upload extends Controller {
         $this->model = new Model_Upload();
     }
 
-    function action_upload() { 
+    function action_upload() {
+        $this->model->uploadPic(); 
         $this->view->generate('upload_check_view.php', 'template_view.php');
-        $this->model->uploadPic();
     }
 }
 ?>

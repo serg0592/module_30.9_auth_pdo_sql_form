@@ -1,3 +1,15 @@
+.navigation_shell {
+    display: inline;
+}
+.navigation_list {
+    display: inline-block;
+}
+.auth_shell {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+}
+
 .image {
     height: auto;
     width: 75vw;

@@ -8,7 +8,7 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-		$_GET['url'] = 'gallery';
+		//$_GET['url'] = 'check';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':
@@ -26,12 +26,15 @@ class Route
 				case 'check':
 					$controller_name = $_GET['url'];
 					break;
-				case 'gallery';
+				case 'gallery':
 					$controller_name = 'gallery';
 					break;
 			}
 		}
 
+		//$_POST['submitLogin'] = 'login';
+		//$_POST['login'] = 'serg';
+		//$_POST['password'] = 'serg';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		}
@@ -41,11 +44,21 @@ class Route
 			$action_name = 'index';
 		}
 
-		//$_POST['submitUpload'] = 1;
 		if (isset($_POST['submitUpload'])) {
 			$content = $_POST['submitUpload'];
 			$controller_name = 'upload';
 			$action_name = 'upload';
+		}
+
+		//session_start();
+		//$_SESSION['login'] = 'serg';
+		//$_POST['comment'] = 'comment';
+		//$_POST['text'] = 'comment_text';
+		
+		if (isset($_POST['comment'])) {
+			$controller_name = $_POST['comment'];
+			$action_name = $_POST['comment'];
+
 		}
 		
 		// добавляем префиксы
@@ -82,12 +95,7 @@ class Route
 		else
 		{
 		    Route::ErrorPage404();
-		}
-		//выводим информацию для себя
-		echo "Model: $model_name <br>";
-		echo "Controler: $controller_name <br>";
-		echo "Action: $action_name <br>";
-		
+		}		
 	}
 
 	public static function ErrorPage404() {

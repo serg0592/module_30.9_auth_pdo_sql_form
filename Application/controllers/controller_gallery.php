@@ -5,13 +5,16 @@ class Controller_Gallery extends Controller {
         $this->model = new Model_Gallery();
     }
 
-    function action_index() { 
-        $this->view->generate('gallery_view.php', 'template_view.php', $this->model->chechFiles());
+    function action_index() {
+        $this->model->checkFiles(); 
+        $this->view->generate('gallery_view.php', 'template_view.php', $this->model->getImg(), $this->model->getComments());
     }
     
     function action_index_auth() {
-        $this->model->chechFiles();
-        $this->view->generateAuth('gallery_view.php', 'template_view.php', 'upload_form_view.php', 'comment_form_view.php', 'user_greating_view.php');
+        $this->model->checkFiles();
+        $this->view->generateAuth('gallery_view.php', 'template_view.php', 'upload_form_view.php', 
+                                    'comment_form_view.php', 'user_greating_view.php', 
+                                    $this->model->getImg(), $this->model->getComments());
     }
 }
 ?>
