@@ -17,10 +17,6 @@
                     $string = json_encode($tmp).PHP_EOL;
                     fwrite($file, $string);
                 }
-                /*fwrite($file, $_SESSION['comment_pic']);
-                fwrite($file, $_SESSION['login']);
-                fwrite($file, $_SESSION['comment']);
-                fwrite($file, $date);*/
                 fclose($file);
                 header('Location: ?url=gallery_auth');
             }

@@ -16,22 +16,26 @@
             }
             
             //проверка директории для комментариев на наличие эл-ов помимо '.' и '..'
-            if (count(scandir('../Application/data/comments')) > 2) {
+            $commentArr = scandir('../Application/data/comments');
+            if (count($commentArr) > 2) {
                 //цикл записи эл-ов массива в $this начиная со второго (ибо 0=>'.' , 1=>'..')
-                for ($i = 2; $i < count(scandir('../Application/data/comments')); $i++) {
+                for ($i = 2; $i < count($commentArr); $i++) {
                     //открываем файл для чтения комментария
-                    $file = fopen('../Application/data/comments/comment' . $i - 2, 'r');
+                    $file = fopen('../Application/data/comments/' . $commentArr[$i], 'r');
                     //построчно читаем файл
-                    $fileText = file('../Application/data/comments/comment' . $i - 2, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                    $fileText = file('../Application/data/comments/' . $commentArr[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                    //декодируем из JSON
                     foreach ($fileText as $line) {
                         $result[] = json_decode($line, true);
                     }
+                    //записываем в массив
                     $comment = [
                         'pic_id' => $result[0],
                         'login' => $result[1],
                         'text' => $result[2],
                         'date' => $result[3],
                     ];
+                    $result = null;
                     //запишем массив комментария в $this, начинающийся с 0
                     $j = $i - 2;
                     $this->commentArr[$j] = $comment;
@@ -50,10 +54,36 @@
         }
 
         public function deleteComment() {
-            $deleteComment = [$_POST['text'], $_POST['date']];
-            for ($i = 2; $i < count(scandir('../Application/data/comments')); $i++) {
-
+            //сканируем директорию файлов с комментариями
+            $commentArr = scandir('../Application/data/comments');
+            for ($i = 2; $i < count($commentArr); $i++) {
+                //открываем файл
+                $file = fopen('../Application/data/comments/' . $commentArr[$i], 'r');
+                //построчно читаем файл
+                $fileText = file('../Application/data/comments/' . $commentArr[$i], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                //декодируем из JSON
+                foreach ($fileText as $line) {
+                    $result[] = json_decode($line, true);
+                };
+                //записываем в массив
+                $comment = [
+                    'pic_id' => $result[0],
+                    'login' => $result[1],
+                    'text' => $result[2],
+                    'date' => $result[3],
+                ];
+                $result = null;
+                //по тексту и дате запоминаем файл для удаления
+                if($_POST['text'] === $comment['text'] && $_POST['date'] === $comment['date']) {
+                    $deleteFiles[] = $commentArr[$i];
+                };
             }
+
+            //цикл для удаления файлов
+            for ($j = 0; $j < count($deleteFiles); $j++) {
+                unlink('../Application/data/comments/' . $deleteFiles[$j]);
+            }
+            header('Location: ?url=gallery_auth');
         }
     }
 ?>

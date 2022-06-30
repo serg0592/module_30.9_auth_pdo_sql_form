@@ -3,6 +3,8 @@ class Route
 {
 	public static function start()
 	{
+		//$dir = scandir('../Application/data/comments');
+		//var_dump($dir);
 		//действия по умолчанию
 		$controller_name = 'main';
 		$action_name = 'index';
@@ -32,9 +34,6 @@ class Route
 			}
 		}
 
-		//$_POST['submitLogin'] = 'login';
-		//$_POST['login'] = 'serg';
-		//$_POST['password'] = 'serg';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		};
@@ -60,6 +59,9 @@ class Route
 			$action_name = 'comment';
 		};
 
+		/*$_POST['delete_comment'] = 'X';
+		$_POST['text'] = 'for delete';
+		$_POST['date'] = 'June 30, 2022, 14:23';*/
 		if (isset($_POST['delete_comment'])) {
 			$controller_name = 'gallery';
 			$action_name = 'delete_comment';

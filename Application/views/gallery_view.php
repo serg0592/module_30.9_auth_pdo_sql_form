@@ -30,7 +30,7 @@
                             echo    "<form method='post' class='delete_comment_btn_placer'>
                                         <input type='hidden' name='text' value='" . $dataComment[$j]['text'] . "'>
                                         <input type='hidden' name='date' value='" . $dataComment[$j]['date'] . "'>
-                                        <input type='submit' name='delete_comment' value='Delete' class='delete_comment_btn'>
+                                        <input type='submit' name='delete_comment' value='X' class='delete_comment_btn'>
                                     </form>";
                         };
                     };                    
