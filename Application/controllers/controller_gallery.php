@@ -13,8 +13,12 @@ class Controller_Gallery extends Controller {
     function action_index_auth() {
         $this->model->checkFiles();
         $this->view->generateAuth('gallery_view.php', 'template_view.php', 'upload_form_view.php', 
-                                    'comment_form_view.php', 'user_greating_view.php', 
+                                    'user_greating_view.php', 
                                     $this->model->getImg(), $this->model->getComments());
+    }
+
+    function action_delete_comment() {
+        $this->model->deleteComment();
     }
 }
 ?>

@@ -1,7 +1,11 @@
-<div class="comment_shell">
-    <h3>Оставьте комментарий</h3>
-    <form class="comment_form" method="post" action="">
-        <textarea name="text" cols="100" rows="10"></textarea><br>
-        <input type="submit" name="comment" value="comment">
-    </form>
-</div>
+<?php
+    require_once 'gallery_view.php';
+    echo    "<div class='comment_form'>
+                <h4>Оставьте комментарий</h4>
+                <form method='post' action=''>
+                    <textarea name='text'></textarea><br>
+                    <input type='hidden' name='comment_pic' value='" . $dataPic[$i]['id'] . "'>
+                    <input type='submit' name='comment' value='comment'>
+                </form>
+            </div>";
+?>

@@ -8,7 +8,7 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-		//$_GET['url'] = 'check';
+		//$_GET['url'] = 'gallery_auth';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':
@@ -37,29 +37,33 @@ class Route
 		//$_POST['password'] = 'serg';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
-		}
+		};
 
 		if (isset($_POST['registration'])) {
 			$controller_name = $_POST['registration'];
 			$action_name = 'index';
-		}
+		};
 
 		if (isset($_POST['submitUpload'])) {
 			$content = $_POST['submitUpload'];
 			$controller_name = 'upload';
 			$action_name = 'upload';
-		}
+		};
 
-		//session_start();
-		//$_SESSION['login'] = 'serg';
-		//$_POST['comment'] = 'comment';
-		//$_POST['text'] = 'comment_text';
+		/*session_start();
+		$_SESSION['login'] = 'serg';
+		$_POST['comment'] = 'comment';
+		$_POST['text'] = 'comment_text';*/
 		
 		if (isset($_POST['comment'])) {
-			$controller_name = $_POST['comment'];
-			$action_name = $_POST['comment'];
+			$controller_name = 'comment';
+			$action_name = 'comment';
+		};
 
-		}
+		if (isset($_POST['delete_comment'])) {
+			$controller_name = 'gallery';
+			$action_name = 'delete_comment';
+		};
 		
 		// добавляем префиксы
 		$model_name = 'model_'.$controller_name;
@@ -95,7 +99,8 @@ class Route
 		else
 		{
 		    Route::ErrorPage404();
-		}		
+		}
+		echo $_SESSION['login'];
 	}
 
 	public static function ErrorPage404() {
