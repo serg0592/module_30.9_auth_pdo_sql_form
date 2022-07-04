@@ -6,14 +6,20 @@
             //сканируем директорию для изображений
             $imgArr = scandir('../img/uploads');
             //проверка массива на наличие эл-ов помимо '.' и '..'
-            if (count($imgArr) > 2) {
-                //цикл записи эл-ов массива в $this начиная со второго (ибо 0=>'.' , 1=>'..')
-                for ($i = 2; $i < count($imgArr); $i++) {
+            if (count($imgArr) > 3) {
+                //цикл записи эл-ов массива в $this начиная со третьего (исключаем '.', '..', 'conf')
+                for ($i = 3; $i < count($imgArr); $i++) {
                     //эл-ты в $this начнутся с 0
-                    $this->imgArr[$i - 2]['id'] = $i - 2;
-                    $this->imgArr[$i - 2]['file'] = $imgArr[$i];
-                }
-            }
+                    //читаем id и автора из файла
+                    $filePicConf = file('../img/uploads/conf/'.substr($imgArr[$i], 0, strlen($imgArr[$i]) - 4).'_conf', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                    foreach($filePicConf as $line) {
+                        $result[] = json_decode($line, true);
+                    }
+                    $this->imgArr[$i - 3]['id'] = $result[1];
+                    $this->imgArr[$i - 3]['auth'] = $result[0];
+                    $this->imgArr[$i - 3]['file'] = $imgArr[$i];
+                };
+            };
             
             //проверка директории для комментариев на наличие эл-ов помимо '.' и '..'
             $commentArr = scandir('../Application/data/comments');
@@ -27,7 +33,7 @@
                     //декодируем из JSON
                     foreach ($fileText as $line) {
                         $result[] = json_decode($line, true);
-                    }
+                    };
                     //записываем в массив
                     $comment = [
                         'pic_id' => $result[0],
@@ -39,18 +45,22 @@
                     //запишем массив комментария в $this, начинающийся с 0
                     $j = $i - 2;
                     $this->commentArr[$j] = $comment;
-                }                
-            }
+                };                
+            };
         }
 
         //функция-геттер изображений
         public function getImg() {
-            return $this->imgArr;
+            if(isset($this->imgArr)) {
+                return $this->imgArr;
+            };
         }
 
         //функция-геттер комментариев
         public function getComments() {
-            return $this->commentArr;
+            if(isset($this->commentArr)) {
+                return $this->commentArr;
+            };
         }
 
         public function deleteComment() {
@@ -77,12 +87,12 @@
                 if($_POST['text'] === $comment['text'] && $_POST['date'] === $comment['date']) {
                     $deleteFiles[] = $commentArr[$i];
                 };
-            }
+            };
 
             //цикл для удаления файлов
             for ($j = 0; $j < count($deleteFiles); $j++) {
                 unlink('../Application/data/comments/' . $deleteFiles[$j]);
-            }
+            };
             header('Location: ?url=gallery_auth');
         }
     }

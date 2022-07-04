@@ -11,12 +11,20 @@
         //вывод изображений
         for ($i = 0; $i < count($dataPic); $i++) {
             echo    "<div class='gallery_item_placer'>
-                            <div class='img_placer'>
-                                Автор: " . $_SESSION['login'] . "<br>
-                                <img class='image' src='../img/uploads/". $dataPic[$i]['file'] ."' alt='что-то пошло не так'><br>
-                            </div>
-                            <div class='comment_placer'>
-                                <div class='comment_content'>"; //оставим тэг не закрытым для переборки и печати комментариев
+                    <div class='img_placer'>
+                    Автор: " . $dataPic[$i]['auth'] . "<br>";
+            if ($dataPic[$i]['auth'] === $_SESSION['login']) {
+                echo    "<form method='post' class='delete_pic_btn_placer'>
+                        <input type='hidden' name='id' value='" . $dataPic[$i]['id'] . "'>
+                        <input type='hidden' name='auth' value='" . $dataPic[$i]['auth'] . "'>
+                        <input type='submit' name='delete_pic' value='Удалить' class='delete_pic_btn'>
+                    </form>";
+                        
+            }; 
+            echo    "<img class='image' src='../img/uploads/". $dataPic[$i]['file'] ."' alt='что-то пошло не так'><br>
+                    </div>
+                    <div class='comment_placer'>
+                    <div class='comment_content'>"; //оставим тэг не закрытым для переборки и печати комментариев
             //проверка и печать комментариев к изображению
             if ($dataComment) {
                 for ($j = 0; $j < count($dataComment); $j++) {

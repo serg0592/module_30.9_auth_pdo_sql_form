@@ -11,7 +11,12 @@
             } else {
                 $commentCount = (count(scandir('../Application/data/comments'))) - 2;                
                 $date = date("F j, Y, G:i");
-                $tmpArr = [$_SESSION['comment_pic'], $_SESSION['login'], $_SESSION['comment'], $date];
+                $tmpArr = [
+                    $_SESSION['comment_pic'], 
+                    $_SESSION['login'],
+                    $_SESSION['comment'], 
+                    $date
+                ];
                 $file = fopen('../Application/data/comments/comment' . $commentCount, 'w+');
                 foreach ($tmpArr as $tmp) {
                     $string = json_encode($tmp).PHP_EOL;

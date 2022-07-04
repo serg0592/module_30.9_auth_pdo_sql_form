@@ -49,10 +49,10 @@ class Route
 			$action_name = 'upload';
 		};
 
-		/*session_start();
-		$_SESSION['login'] = 'serg';
-		$_POST['comment'] = 'comment';
-		$_POST['text'] = 'comment_text';*/
+		//session_start();
+		//$_SESSION['login'] = 'serg';
+		//$_POST['comment'] = 'comment';
+		//$_POST['text'] = 'comment_text';
 		
 		if (isset($_POST['comment'])) {
 			$controller_name = 'comment';
@@ -101,8 +101,7 @@ class Route
 		else
 		{
 		    Route::ErrorPage404();
-		}
-		echo $_SESSION['login'];
+		};
 	}
 
 	public static function ErrorPage404() {
