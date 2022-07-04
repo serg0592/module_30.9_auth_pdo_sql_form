@@ -20,7 +20,7 @@
                     <?php
                         if (isset($authUserData_view)) {
                             include $authUserData_view;
-                        } elseif ($content_view = 'main_view.php') {
+                        } elseif ($content_view == 'main_view.php') {
                             include $content_view;
                         }
                     ?>
@@ -33,7 +33,7 @@
                 }
 
                 //подгружаем содержимое страницы
-                if ($content_view != 'main_view.php') {
+                if ($content_view !== 'main_view.php') {
                     include $content_view;
                 }
             ?>

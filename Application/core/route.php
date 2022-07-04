@@ -10,7 +10,7 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-		//$_GET['url'] = 'gallery_auth';
+		//$_GET['url'] = 'gallery';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':

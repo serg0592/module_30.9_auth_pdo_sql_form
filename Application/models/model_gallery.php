@@ -18,6 +18,7 @@
                     $this->imgArr[$i - 3]['id'] = $result[1];
                     $this->imgArr[$i - 3]['auth'] = $result[0];
                     $this->imgArr[$i - 3]['file'] = $imgArr[$i];
+                    $result = null;
                 };
             };
             
