@@ -20,5 +20,9 @@ class Controller_Gallery extends Controller {
     function action_delete_comment() {
         $this->model->deleteComment();
     }
+
+    function action_delete_pic() {
+        $this->model->deletePic();
+    }
 }
 ?>

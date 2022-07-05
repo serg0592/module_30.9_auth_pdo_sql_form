@@ -10,7 +10,7 @@ class Route
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-		//$_GET['url'] = 'gallery';
+		//$_GET['url'] = 'gallery_auth';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':
@@ -41,8 +41,9 @@ class Route
 		if (isset($_POST['registration'])) {
 			$controller_name = $_POST['registration'];
 			$action_name = 'index';
-		};
+		};	
 
+		//$_POST['submitUpload'] = 1;
 		if (isset($_POST['submitUpload'])) {
 			$content = $_POST['submitUpload'];
 			$controller_name = 'upload';
@@ -66,6 +67,15 @@ class Route
 			$controller_name = 'gallery';
 			$action_name = 'delete_comment';
 		};
+
+		//$_POST['delete_pic'] = 'X';
+		//$_POST['id'] = 0;
+		//$_POST['auth'] = 'serg';
+		if (isset($_POST['delete_pic'])) {
+			$controller_name = 'gallery';
+			$action_name ='delete_pic';
+		};
+		
 		
 		// добавляем префиксы
 		$model_name = 'model_'.$controller_name;

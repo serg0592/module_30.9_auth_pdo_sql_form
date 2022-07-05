@@ -12,7 +12,7 @@
         for ($i = 0; $i < count($dataPic); $i++) {
             echo    "<div class='gallery_item_placer'>
                     <div class='img_placer'>
-                    Автор: " . $dataPic[$i]['auth'] . "<br>";
+                    Автор: " . $dataPic[$i]['auth'];
             if ($dataPic[$i]['auth'] === $_SESSION['login']) {
                 echo    "<form method='post' class='delete_pic_btn_placer'>
                         <input type='hidden' name='id' value='" . $dataPic[$i]['id'] . "'>
@@ -28,7 +28,7 @@
             //проверка и печать комментариев к изображению
             if ($dataComment) {
                 for ($j = 0; $j < count($dataComment); $j++) {
-                    if ((int)$dataComment[$j]['pic_id'] === $dataPic[$i]['id']) {
+                    if ($dataComment[$j]['pic_id'] === $dataPic[$i]['id']) {
                         echo    "<div class='comment'>
                                     <div class='user'>" . $dataComment[$j]['login'] . "</div>
                                     <div class='date'>" . $dataComment[$j]['date'] . "</div><br>
