@@ -66,7 +66,7 @@
 
         //функция для удаления комментариев сканирует директорию с файлами комментариев, выбирает подходящие по переданным
         //из формы дате и тексту и удаляет их
-        public function deleteComment() {
+        public function deleteComment($text = null, $date = null, $id = null) {
             //сканируем директорию файлов с комментариями
             $commentArr = scandir('../Application/data/comments');
             for ($i = 2; $i < count($commentArr); $i++) {
@@ -87,8 +87,17 @@
                 ];
                 $result = null;
                 //по тексту и дате запоминаем файл для удаления
-                if($_POST['text'] === $comment['text'] && $_POST['date'] === $comment['date']) {
+                if($text === $comment['text'] && $date === $comment['date']) {
                     $deleteFiles[] = $commentArr[$i];
+                };
+
+                //удаление комментариев по привязке по id к изображению
+                if($id) {
+                    for ($k = 2; $k < count($commentArr); $k++) {
+                        if($id == $comment['pic_id']) {
+                            $deleteFiles[] = $commentArr[$k];
+                        };
+                    };
                 };
             };
 
@@ -118,31 +127,38 @@
                     'auth' => $result[0],
                 ];
                 $result = null;
-                //по тексту и дате запоминаем файл для удаления
-                if($_POST['id'] === $config['pic_id'] && $_POST['auth'] === $config['auth']) {
-                    $deleteConf[] = $confArr[$i];
-                    $deletePic[] = substr($confArr[$i], 0, strlen($confArr[$i]) - 5);
+                //по id и автору запоминаем файлы для удаления
+                if($_POST['id'] == $config['pic_id'] && $_POST['auth'] == $config['auth']) {
+                    $deleteConf[] = $confArr[$i]; //файлы конфигурации
+                    $deletePic[] = substr($confArr[$i], 0, strlen($confArr[$i]) - 5); //файлы изображений
                 };
+            };
 
-                //цикл для удаления файлов
-                for ($j = 0; $j < count($deleteConf); $j++) {
-                    //удаляем файл конфигурации изображения
-                    unlink('../img/uploads/conf/' . $deleteConf[$j]);
-                };
-                //сканируем директорию с изображениями
-                $scanPic = scandir('../img/uploads');
+            //цикл для удаления файлов
+            for ($j = 0; $j < count($deleteConf); $j++) {
+                //удаляем файл конфигурации изображения
+                $unlinkFile = '../img/uploads/conf/' . $deleteConf[$j];
+                unlink($unlinkFile);
+                $unlinkFile = null;
+            };
+            //сканируем директорию с изображениями
+            $scanPic = scandir('../img/uploads');
+            for ($i = 0; $i < count($deletePic); $i++) {
                 for ($j = 3; $j < count($scanPic); $j++) {
                     //подставляем формат к имени и удаляем
-                    if(($deletePic[$j - 3].'.jpg') == $scanPic[$j]) {
-                        unlink('../img/uploads/' . $deletePic[$j - 3].'.jpg');
-                    } elseif (($deletePic[$j - 3].'.png') == $scanPic[$j]) {
-                        unlink('../img/uploads/' . $deletePic[$j - 3].'.png');
-                    } elseif (($deletePic[$j - 3].'.gif') == $scanPic[$j]) {
-                        unlink('../img/uploads/' . $deletePic[$j - 3].'.gif');
+                    $sad = $deletePic[$i].'.jpg';
+                    $sgfs = $scanPic[$j];
+                    if(($deletePic[$i].'.jpg') == $scanPic[$j]) {
+                        unlink('../img/uploads/' . $deletePic[$i].'.jpg');
+                    } elseif (($deletePic[$i].'.png') == $scanPic[$j]) {
+                        unlink('../img/uploads/' . $deletePic[$i].'.png');
+                    } elseif (($deletePic[$i].'.gif') == $scanPic[$j]) {
+                        unlink('../img/uploads/' . $deletePic[$i].'.gif');
                     };
                 };
-                header('Location: ?url=gallery_auth');
-            }
+            };
+
+            header('Location: ?url=gallery_auth');
         }
     }
 ?>

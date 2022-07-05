@@ -18,11 +18,12 @@ class Controller_Gallery extends Controller {
     }
 
     function action_delete_comment() {
-        $this->model->deleteComment();
+        $this->model->deleteComment($_POST['text'], $_POST['date']);
     }
 
     function action_delete_pic() {
         $this->model->deletePic();
+        $this->model->deleteComment(null, null, $_POST['id']);
     }
 }
 ?>

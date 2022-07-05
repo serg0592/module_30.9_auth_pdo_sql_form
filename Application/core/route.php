@@ -68,9 +68,9 @@ class Route
 			$action_name = 'delete_comment';
 		};
 
-		//$_POST['delete_pic'] = 'X';
-		//$_POST['id'] = 0;
-		//$_POST['auth'] = 'serg';
+		$_POST['delete_pic'] = 'X';
+		$_POST['id'] = 4;
+		$_POST['auth'] = 'serg';
 		if (isset($_POST['delete_pic'])) {
 			$controller_name = 'gallery';
 			$action_name ='delete_pic';
