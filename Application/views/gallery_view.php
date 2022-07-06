@@ -11,20 +11,21 @@
         //вывод изображений
         for ($i = 0; $i < count($dataPic); $i++) {
             echo    "<div class='gallery_item_placer'>
-                    <div class='img_placer'>
-                    Автор: " . $dataPic[$i]['auth'];
-            if ($dataPic[$i]['auth'] === $_SESSION['login']) {
-                echo    "<form method='post' class='delete_pic_btn_placer'>
-                        <input type='hidden' name='id' value='" . $dataPic[$i]['id'] . "'>
-                        <input type='hidden' name='auth' value='" . $dataPic[$i]['auth'] . "'>
-                        <input type='submit' name='delete_pic' value='Удалить' class='delete_pic_btn'>
-                    </form>";
+                        <div class='img_placer'>Автор: " . $dataPic[$i]['auth'];
+            if (isset($_SESSION['login']) && $dataPic[$i]['auth'] === $_SESSION['login']) {
+                echo        "<form method='post' class='delete_pic_btn_placer'>
+                                <input type='hidden' name='id' value='" . $dataPic[$i]['id'] . "'>
+                                <input type='hidden' name='auth' value='" . $dataPic[$i]['auth'] . "'>
+                                <input type='submit' name='delete_pic' value='Удалить' class='delete_pic_btn'>
+                            </form>";
                         
+            } else {
+                echo "<br>";
             }; 
-            echo    "<img class='image' src='../img/uploads/". $dataPic[$i]['file'] ."' alt='что-то пошло не так'><br>
-                    </div>
-                    <div class='comment_placer'>
-                    <div class='comment_content'>"; //оставим тэг не закрытым для переборки и печати комментариев
+            echo            "<img class='image' src='../img/uploads/". $dataPic[$i]['file'] ."' alt='что-то пошло не так'><br>
+                        </div>
+                        <div class='comment_placer'>
+                        <div class='comment_content'>"; //оставим тэг не закрытым для переборки и печати комментариев
             //проверка и печать комментариев к изображению
             if ($dataComment) {
                 for ($j = 0; $j < count($dataComment); $j++) {
@@ -34,7 +35,7 @@
                                     <div class='date'>" . $dataComment[$j]['date'] . "</div><br>
                                     <div class='comment_text'>" . $dataComment[$j]['text'] . "</div>                                    
                                 </div>";
-                        if ($dataComment[$j]['login'] === $_SESSION['login']) {
+                        if (isset($_SESSION['login']) && $dataComment[$j]['login'] === $_SESSION['login']) {
                             echo    "<form method='post' class='delete_comment_btn_placer'>
                                         <input type='hidden' name='text' value='" . $dataComment[$j]['text'] . "'>
                                         <input type='hidden' name='date' value='" . $dataComment[$j]['date'] . "'>

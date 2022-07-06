@@ -32,7 +32,7 @@
                     mysqli_query($link,"INSERT INTO users SET user_log='".$login."', user_pas='".$password."'");
 
                     //переадресовываем на страницу с сообщением об успехе
-                    header("Location: ./public/index.php?url=regSuccessPage");
+                    header("Location: ?url=regSuccessPage");
 
                     exit();
                 } else {

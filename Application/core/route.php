@@ -30,10 +30,29 @@ class Route
 					break;
 				case 'gallery':
 					$controller_name = 'gallery';
+					session_start();
+					if(isset($_SESSION['login'])) {
+						$action_name = 'index_auth';
+					};
 					break;
-			}
-		}
+				case 'logout':
+					$controller_name = 'logout';
+					$action_name ='logout';
+					break;
+				case 'error':
+					$controller_name = 'login';
+					$action_name = 'error';
+					break;
+				case 'cookie':
+					$controller_name = 'login';
+					$action_name = 'set_cookie';
+					break;
+			};
+		};
 
+		//$_POST['submitLogin'] = 'login';
+		//$_POST['login'] = 'serg';
+		//$_POST['password'] = 'serg';
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		};
@@ -68,14 +87,13 @@ class Route
 			$action_name = 'delete_comment';
 		};
 
-		$_POST['delete_pic'] = 'X';
-		$_POST['id'] = 4;
-		$_POST['auth'] = 'serg';
+		//$_POST['delete_pic'] = 'X';
+		//$_POST['id'] = 2;
+		//$_POST['auth'] = 'serg';
 		if (isset($_POST['delete_pic'])) {
 			$controller_name = 'gallery';
 			$action_name ='delete_pic';
 		};
-		
 		
 		// добавляем префиксы
 		$model_name = 'model_'.$controller_name;

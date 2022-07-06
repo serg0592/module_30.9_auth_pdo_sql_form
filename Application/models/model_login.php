@@ -34,8 +34,8 @@
 
                     // Ставим куки
 
-                    setcookie("id", $data['user_id']);
-                    setcookie("hash", $hash); // httponly !!!
+                    setcookie("id", $data['user_id'], time()+60*60*24*30, "/", "localhost", false, true);
+                    setcookie("hash", $hash, time()+60*60*24*30, "/", "localhost", false, true); // httponly!
 
                     // Переадресовываем браузер на страницу проверки нашего скрипта
                     header("Location: ?url=check");

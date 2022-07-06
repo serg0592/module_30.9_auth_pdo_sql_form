@@ -91,13 +91,9 @@
                     $deleteFiles[] = $commentArr[$i];
                 };
 
-                //удаление комментариев по привязке по id к изображению
-                if($id) {
-                    for ($k = 2; $k < count($commentArr); $k++) {
-                        if($id == $comment['pic_id']) {
-                            $deleteFiles[] = $commentArr[$k];
-                        };
-                    };
+                //если передан id изображения, то запоминаем по id комменты для удаления
+                if($id == $comment['pic_id']) {
+                    $deleteFiles[] = $commentArr[$i];
                 };
             };
 
@@ -157,8 +153,6 @@
                     };
                 };
             };
-
-            header('Location: ?url=gallery_auth');
         }
     }
 ?>
