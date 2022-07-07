@@ -1,4 +1,20 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/Roboto/Roboto-Medium.ttf');
+}
+
 h4 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
     margin-block-start: 10px;
     margin-block-end: 3px;
 }
@@ -11,17 +27,14 @@ h4 {
 .nav_item {
     display: inline-block;
 }
-.nav_link {
+.nav_link {    
+    font-family: 'Roboto', serif;
+    margin: 0px 15px 0;
+    font-weight: 500;
+    font-size: 16px;
     text-decoration: none;
-    display: inline-block;
-    padding: 5px 10px;
-    letter-spacing: 1px;
-    margin: 0;
-    font-size: 24px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
     transition: .3s ease-in-out;
-    color: #92B8C5;
-    text-shadow: 1px 1px 1px #555555;
 }
 .nav_link:hover {
     position: relative;
@@ -29,16 +42,46 @@ h4 {
     left: 2px;
 }
 .main_link {
-    color: red;
+    border: 2px solid #3F51B5;
+    border-radius: 5px;
+    color: #3F51B5;
+    padding: 10px;
+}
+.reg_link {
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left: 29%;
+    padding-right: 29%;
+    border: none;
+    background-color:#aeaeae;
+    color:#fff;
+    font-weight:500;
+    border-radius:5px;
+    text-decoration: none;
+    width:230px;
+}
+.logout_link {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 29%;
+    padding-right: 29%;
+    border: none;
+    background-color:#aeaeae;
+    color:#fff;
+    font-weight:500;
+    border-radius:5px;
+    text-decoration: none;
+    width:100%;
 }
 
 .auth_shell {
     display: inline-block;
+    font-family: 'Roboto', serif;
     position: absolute;
     right: 10px;
 }
-.auth_form {
-
+.great_text {
+    margin: 15px;
 }
 .auth_form_text {
     display: inline-block;
@@ -62,6 +105,24 @@ input[type=password] {
     margin-top: 2px;
     margin-bottom: 5px;
 }
+input[type=submit] {      
+    padding:10px;
+    border:none;
+    background-color:#3F51B5;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width:230px;
+}
+input#file-upload-button {      
+    padding:10px;
+    border:none;
+    background-color:#55e78a;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width:230px;
+}
 
 .gallery_shell {
     padding-left: 5px;
@@ -72,7 +133,7 @@ input[type=password] {
 }
 
 .gallery_item_placer {
-    
+    border-bottom: solid 1px red;
 }
 
 .gallery_item_content {
@@ -85,6 +146,7 @@ input[type=password] {
 }
 
 .image {
+    margin: 10px 0;
     width: 50vw;
     min-width: 450px;
 }
