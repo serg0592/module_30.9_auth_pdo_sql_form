@@ -8,10 +8,59 @@ h4 {
 .navigation_list {
     display: inline-block;
 }
+.nav_item {
+    display: inline-block;
+}
+.nav_link {
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    margin: 0;
+    font-size: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: .3s ease-in-out;
+    color: #92B8C5;
+    text-shadow: 1px 1px 1px #555555;
+}
+.nav_link:hover {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+.main_link {
+    color: red;
+}
+
 .auth_shell {
     display: inline-block;
     position: absolute;
     right: 10px;
+}
+.auth_form {
+
+}
+.auth_form_text {
+    display: inline-block;
+}
+.log_text {
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+.pas_text {
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+.auth_form_fields {
+    display: inline-block;
+}
+input[type=text] {
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+input[type=password] {
+    margin-top: 2px;
+    margin-bottom: 5px;
 }
 
 .gallery_shell {

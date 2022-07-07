@@ -12,6 +12,7 @@
         for ($i = 0; $i < count($dataPic); $i++) {
             echo    "<div class='gallery_item_placer'>
                         <div class='img_placer'>Автор: " . $dataPic[$i]['auth'];
+            //проверка авторизованного пользователя для размещения кнопки удаления изображения
             if (isset($_SESSION['login']) && $dataPic[$i]['auth'] === $_SESSION['login']) {
                 echo        "<form method='post' class='delete_pic_btn_placer'>
                                 <input type='hidden' name='id' value='" . $dataPic[$i]['id'] . "'>
@@ -21,7 +22,8 @@
                         
             } else {
                 echo "<br>";
-            }; 
+            };
+            //размещение изображения  
             echo            "<img class='image' src='../img/uploads/". $dataPic[$i]['file'] ."' alt='что-то пошло не так'><br>
                         </div>
                         <div class='comment_placer'>
@@ -35,6 +37,7 @@
                                     <div class='date'>" . $dataComment[$j]['date'] . "</div><br>
                                     <div class='comment_text'>" . $dataComment[$j]['text'] . "</div>                                    
                                 </div>";
+                        //проверка авторизованного пользователя для размещения кнопки удаления комментария
                         if (isset($_SESSION['login']) && $dataComment[$j]['login'] === $_SESSION['login']) {
                             echo    "<form method='post' class='delete_comment_btn_placer'>
                                         <input type='hidden' name='text' value='" . $dataComment[$j]['text'] . "'>

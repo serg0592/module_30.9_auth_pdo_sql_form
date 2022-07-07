@@ -13,14 +13,17 @@
         <main class="main">
             <div class="navigation_shell">
                 <ul class="navigation_list">
-                    <li><a href="?url=main">На главную</a></li>
-                    <li><a href="?url=gallery">В галерею</a></li>
+                    <li class="nav_item"><a class="nav_link main_link" href="?url=main">На главную</a></li>
+                    <li class="nav_item"><a class="nav_link" href="?url=gallery">В галерею</a></li>
                 </ul>
                 <div class='auth_shell'>
                     <?php
+                        //выбираем содержимое нав. бара
                         if (isset($authUserData_view)) {
+                            //если есть авторизованный пользователь, подгружаем приветствие
                             include $authUserData_view;
                         } elseif ($content_view == 'main_view.php') {
+                            //если контент - главная страница, то размещаем здесь
                             include $content_view;
                         }
                     ?>

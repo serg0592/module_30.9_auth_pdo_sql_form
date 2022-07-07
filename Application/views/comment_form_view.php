@@ -1,5 +1,6 @@
 <?php
     require_once 'gallery_view.php';
+    //форма для отправки комментариев
     echo    "<div class='comment_form'>
                 <h4>Оставьте комментарий</h4>
                 <form method='post' action=''>

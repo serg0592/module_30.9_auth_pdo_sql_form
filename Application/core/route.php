@@ -3,14 +3,11 @@ class Route
 {
 	public static function start()
 	{
-		//$dir = scandir('../Application/data/comments');
-		//var_dump($dir);
 		//действия по умолчанию
 		$controller_name = 'main';
 		$action_name = 'index';
 
         //проверка наличия имя контроллера в GET
-		//$_GET['url'] = 'gallery_auth';
 		if (isset($_GET['url'])) {
 			switch ($_GET['url']) {
 				case 'regPage':
@@ -50,46 +47,37 @@ class Route
 			};
 		};
 
-		//$_POST['submitLogin'] = 'login';
-		//$_POST['login'] = 'serg';
-		//$_POST['password'] = 'serg';
+		//логин
 		if (isset($_POST['submitLogin'])) {
 			$controller_name = $_POST['submitLogin'];
 		};
 
+		//регистрация
 		if (isset($_POST['registration'])) {
 			$controller_name = $_POST['registration'];
 			$action_name = 'index';
 		};	
 
-		//$_POST['submitUpload'] = 1;
+		//загрузка изображения
 		if (isset($_POST['submitUpload'])) {
 			$content = $_POST['submitUpload'];
 			$controller_name = 'upload';
 			$action_name = 'upload';
 		};
-
-		//session_start();
-		//$_SESSION['login'] = 'serg';
-		//$_POST['comment'] = 'comment';
-		//$_POST['text'] = 'comment_text';
 		
+		//отправить комментарий
 		if (isset($_POST['comment'])) {
 			$controller_name = 'comment';
 			$action_name = 'comment';
 		};
 
-		/*$_POST['delete_comment'] = 'X';
-		$_POST['text'] = 'for delete';
-		$_POST['date'] = 'June 30, 2022, 14:23';*/
+		//удалить комментарий
 		if (isset($_POST['delete_comment'])) {
 			$controller_name = 'gallery';
 			$action_name = 'delete_comment';
 		};
 
-		//$_POST['delete_pic'] = 'X';
-		//$_POST['id'] = 2;
-		//$_POST['auth'] = 'serg';
+		//удалить изображение
 		if (isset($_POST['delete_pic'])) {
 			$controller_name = 'gallery';
 			$action_name ='delete_pic';

@@ -5,6 +5,7 @@ class Controller_Comment extends Controller {
         $this->view = new View();
     }
 
+    //сохранить комментарий
     function action_comment() {
         $this->model->saveComment();
     }

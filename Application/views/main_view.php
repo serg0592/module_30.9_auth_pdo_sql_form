@@ -1,7 +1,13 @@
 <h4>Авторизация</h4>
 <form class="auth_form" method="POST" action="">
-    Логин <input name="login" type="text" required><br>
-    Пароль <input name="password" type="password" required><br>
+    <div class="auth_form_text">
+        <div class="log_text">Логин</div>
+        <div class="pas_text">Пароль</div>
+    </div>
+    <div class="auth_form_fields">
+        <input name="login" type="text" required><br>
+        <input name="password" type="password" required>
+    </div><br>
     <input name="submitLogin" type="submit" value="login">
 </form>
 <p>

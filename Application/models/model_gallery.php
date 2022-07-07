@@ -144,6 +144,7 @@
                     //подставляем формат к имени и удаляем
                     $sad = $deletePic[$i].'.jpg';
                     $sgfs = $scanPic[$j];
+                    //проверяем на .jpg, .png, .gif
                     if(($deletePic[$i].'.jpg') == $scanPic[$j]) {
                         unlink('../img/uploads/' . $deletePic[$i].'.jpg');
                     } elseif (($deletePic[$i].'.png') == $scanPic[$j]) {

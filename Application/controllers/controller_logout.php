@@ -5,6 +5,7 @@ class Controller_Logout extends Controller {
         $this->model = new Model_Logout();
     }
 
+    //метод разовтаризации
     function action_logout() { 
         $this->model->logoutUser();
     }
